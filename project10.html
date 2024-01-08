@@ -1,0 +1,179 @@
+
+<!DOCTYPE html>
+<html>
+    <head>
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <title>
+            BON MARSE (SHIPPING)
+        </title>
+        <link rel="stylesheet" href="projectstyle.css">
+    </head>
+    <body>
+        <div>  
+            <img src="Capture.JPG">
+            <h1> BON MARSE </h1>
+            <p class="l">
+                <a href="project7.html">    Site Map__    </a><a href="project1.html">     HOME __    </a> <a href="project5.html">     OUR PRODUCT__     </a> <a href="project3.html">     CONTACT US__     </a>
+                <a href="project4.html">     LOCATION__     </a><a href="project2.html">     US__    </a><a href="project6.html"> FEEDBACK__</a> <a href="project10.html"> shipping address</a>
+                <br><br>
+            </p>
+            <h2>Current Date and Time</h2>
+
+            <p id="currentDateTime" class="lead"></p>
+          
+            <script>
+              
+              function updateDateTime() {
+                const currentDate = new Date();
+                const options = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric', hour: 'numeric', minute: 'numeric', second: 'numeric', timeZoneName: 'short' };
+                const formattedDateTime = currentDate.toLocaleDateString('en-US', options);
+          
+                
+                document.getElementById('currentDateTime').innerText = `Current Date and Time: ${formattedDateTime}`;
+              }
+          
+              setInterval(updateDateTime, 1000);
+          
+             
+              updateDateTime();
+            </script>
+              <br><br><br><br>
+              <script>
+                  function generateReport() {
+                      var name = document.getElementById('inputName').value;
+                      var lastname = document.getElementById('inputLastName').value;
+                      var email = document.getElementById('inputEmail').value;
+                      var phonenumber = document.getElementById('inputPhoneNumber').value;
+                      var payment = document.querySelector('input[name="payment"]:checked').value;
+                      var city = document.getElementById('city').value;
+          
+                      var report = "Name: " + name + "\n";
+                      report += "Last Name: " + lastname + "\n";
+                      report += "Email: " + email + "\n";
+                      report += "Phone Number: " + phonenumber + "\n";
+                      report += "Payment Method: " + payment + "\n";
+                      report += "City: " + city + "\n";
+                         
+                      document.getElementById('reportTextarea').value = report;
+                  }
+              </script>
+          
+              <form onsubmit="generateReport(); return false;">
+                  <label for="inputName">Name:</label>
+                  <input type="text" id="inputName" name="inputName" required>
+          
+                  <label for="inputLastName">Last Name:</label>
+                  <input type="text" id="inputLastName" name="inputLastName" required>
+          
+                  <label for="inputEmail">Email:</label>
+                  <input type="email" id="inputEmail" name="inputEmail" required>
+          
+                  <label for="inputPhoneNumber">Phone Number:</label>
+                  <input type="number" id="inputPhoneNumber" name="inputPhoneNumber" required>
+          
+                  <div id="cityDiv" onchange="generateReport()">
+                      <label>City:</label>
+                      <select id="city" name="city" required>
+                          <option selected disabled value="">Choose...</option>
+                          <option>AMMAN</option>
+                          <option>IRBID</option>
+                          <option>ZARQA'A</option>
+                          <option>AQABA</option>
+                      </select>
+                  </div>
+          
+                  <div id="paymentOptionsDiv" onchange="generateReport()">
+                      <label>Payment Method:</label>
+                      <input type="radio" id="cashOnDelivery" name="payment" value="Cash on Delivery"> Cash on Delivery<br>
+                      <input type="radio" id="creditCard" name="payment" value="Credit Card"> Credit Card<br>
+                      <input type="radio" id="paypal" name="payment" value="PayPal"> PayPal<br>
+                  </div>
+          
+                  <button type="submit">Submit</button>
+              </form>
+              <textarea id="reportTextarea" rows="10" cols="50" readonly></textarea>
+
+
+              <h1 class="mb-4">BMI Health Tracker</h1>
+        
+          <div class="row">
+            <div class="col-md-6">
+              <label for="height">Height (meters):</label>
+              <input type="number" step="0.01" id="height" class="form-control" placeholder="Enter height">
+            </div>
+            <div class="col-md-6">
+              <label for="weight">Weight (kg):</label>
+              <input type="number" step="0.01" id="weight" class="form-control" placeholder="Enter weight">
+            </div>
+          </div>
+        
+          <div class="row mt-3">
+            <div class="col-md-6">
+              <label>Gender:</label>
+              <div class="form-check">
+                <input class="form-check-input" type="radio" name="gender" id="male" value="male">
+                <label class="form-check-label" for="male">Male</label>
+              </div>
+              <div class="form-check">
+                <input class="form-check-input" type="radio" name="gender" id="female" value="female">
+                <label class="form-check-label" for="female">Female</label>
+              </div>
+            </div>
+            <div class="col-md-6">
+              <label>Lifestyle:</label>
+              <div class="form-check">
+                <input class="form-check-input" type="checkbox" id="active">
+                <label class="form-check-label" for="active">Active</label>
+              </div>
+              <div class="form-check">
+                <input class="form-check-input" type="checkbox" id="sedentary">
+                <label class="form-check-label" for="sedentary">Sedentary</label>
+              </div>
+            </div>
+          </div>
+        
+          <button onclick="calculateBMI()" class="btn btn-primary mt-3">Calculate BMI</button>
+        
+          <div id="result" class="mt-4"></div>
+        
+          <script>
+            function calculateBMI() {
+              const height = document.getElementById('height').value;
+              const weight = document.getElementById('weight').value;
+              const gender = document.querySelector('input[name="gender"]:checked');
+              const lifestyleActive = document.getElementById('active').checked;
+              const lifestyleSedentary = document.getElementById('sedentary').checked;
+        
+              if (!height || !weight || !gender || (!lifestyleActive && !lifestyleSedentary)) {
+                alert("Please fill in all fields.");
+                return;
+              }
+        
+              const bmi = weight / (height * height);
+              let status;
+        
+              if (bmi < 18.5) {
+                status = 'Underweight';
+              } else if (bmi >= 18.5 && bmi < 25) {
+                status = 'Normal weight';
+              } else if (bmi >= 25 && bmi < 30) {
+                status = 'Overweight';
+              } else {
+                status = 'Obese';
+              }
+        
+              const resultElement = document.getElementById('result');
+              resultElement.innerHTML = `<p>Your BMI: ${bmi.toFixed(2)} - ${status}</p>`;
+            }
+          </script>
+          <br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
+          <hr>
+        
+        
+              
+            <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
+        </body>
+          </body>
+    </html>
